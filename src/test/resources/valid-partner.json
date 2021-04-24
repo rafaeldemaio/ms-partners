@@ -1,0 +1,38 @@
+{
+    "id": "1",
+    "tradingName": "Adega Osasco",
+    "ownerName": "Ze da Ambev",
+    "document": "02.453.716/000170",
+    "coverageArea": {
+        "type": "MultiPolygon",
+        "coordinates": [
+            [
+                [
+                    [
+                        0.00000,
+                        0.00000
+                    ],
+                    [
+                        0.0000,
+                        -1.0000
+                    ],
+                    [
+                        -1.0000,
+                        0.0000
+                    ],
+                    [
+                        0.00000,
+                        0.00000
+                    ]
+                ]
+            ]
+        ]
+    },
+    "address": {
+        "type": "Point",
+        "coordinates": [
+            0.00000,
+            0.00000
+        ]
+    }
+}

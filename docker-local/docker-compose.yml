@@ -1,0 +1,48 @@
+version: '3.8'
+services:
+    ms.partners.local:
+        image: ze-challenge-partners:latest
+        env_file: .env
+        hostname: ms.partners.local
+        container_name: ms.partners.local
+        build:
+            context: ./../
+            dockerfile: ./Dockerfile
+        environment:
+            ZE_MONGO_URI: ${ZE_MONGO_URI}
+        depends_on:
+            - mongo.partners.local
+        ports:
+            - 8080:8080
+        networks:
+            - partners-network
+
+    migrations.partners:
+        image: migrations.partners:lastest
+        hostname: migrations.partners
+        container_name: migrations.partners
+        env_file: .env
+        build:
+            context: ./migrations
+            dockerfile: Dockerfile
+        depends_on:
+            - mongo.partners.local
+        environment:
+            - CREATE_INDEXES=${CREATE_INDEXES}
+            - ZE_MONGO_URI=${ZE_MONGO_URI}
+        networks:
+            - partners-network
+
+    mongo.partners.local:
+        image: mongo
+        restart: always
+        ports:
+            - 27017:27017
+        hostname: mongo.partners.local
+        container_name: mongo.partners.local
+        networks:
+            - partners-network
+
+networks:
+    partners-network:
+        driver: bridge

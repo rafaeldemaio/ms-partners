@@ -1,0 +1,22 @@
+springdoc:
+    api-docs:
+        path: /api-docs
+    swagger-ui:
+        operations-sorter: method
+
+ze:
+    openapi:
+        title: Partners Microservice
+        desc: Microservice responsible to control all operations about partners
+        version: v0.0.1
+
+spring:
+    data:
+        mongodb:
+            uri: ${ZE_MONGO_URI}
+
+management:
+    endpoint.health.show-details: always
+    endpoints.web:
+        exposure.include: health
+        base-path: '/'
