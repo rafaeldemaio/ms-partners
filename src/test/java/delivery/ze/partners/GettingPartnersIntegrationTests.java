@@ -4,6 +4,7 @@ import delivery.ze.partners.domain.exception.model.ErrorModel;
 import delivery.ze.partners.domain.partner.Partner;
 import delivery.ze.partners.domain.partner.PartnerRepository;
 import delivery.ze.partners.restapi.data.PartnersResponse;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ class GettingPartnersIntegrationTests extends AbstractIntegrationTests {
         Partner partner = getPartnerFromJson();
         repository.save(partner);
         mongoTemplate.indexOps(Partner.class).ensureIndex(new GeospatialIndex("address"));
+    }
+
+    @AfterEach
+    private void emptyDatabase() throws Exception {
+        repository.deleteAll();
     }
 
     @Test

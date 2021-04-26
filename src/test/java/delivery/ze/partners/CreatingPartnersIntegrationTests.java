@@ -26,8 +26,8 @@ class CreatingPartnersIntegrationTests extends AbstractIntegrationTests {
     PartnerRepository repository;
 
     @Test
-    @Order(0)
-    void given_a_valid_payload_is_passed_should_save_in_database() throws Exception {
+    @Order(1)
+    void given_a_valid_payload_passed_should_save_in_database() throws Exception {
         MvcResult result = performPost(getValidPartnersRequest()).andExpect(status().isCreated()).andReturn();
         String response = result.getResponse().getContentAsString();
         Optional<Partner> partner = repository.findById(response);
@@ -35,7 +35,8 @@ class CreatingPartnersIntegrationTests extends AbstractIntegrationTests {
     }
 
     @Test
-    void given_a_invalid_payload_is_passed_should_return_bad_request() throws Exception {
+    @Order(2)
+    void given_a_invalid_payload_passed_should_return_bad_request() throws Exception {
         MvcResult result = performPost(getEmptyPayload()).andExpect(status().isBadRequest()).andReturn();
         ErrorModel errorModel = getErrorModel(result);
         assertThat(errorModel.getAttributes()).size().isEqualTo(5L);
@@ -44,6 +45,7 @@ class CreatingPartnersIntegrationTests extends AbstractIntegrationTests {
     }
 
     @Test
+    @Order(3)
     void given_partner_with_document_already_registered_should_return_bad_request() throws Exception {
         MvcResult result = performPost(getValidPartnersRequest()).andExpect(status().isBadRequest()).andReturn();
         ErrorModel errorModel = getErrorModel(result);
@@ -54,6 +56,7 @@ class CreatingPartnersIntegrationTests extends AbstractIntegrationTests {
     }
 
     @Test
+    @Order(4)
     void given_partner_with_coverage_area_coordinates_empty_should_return_bad_request() throws Exception {
         MvcResult result = performPost(getPartnerWithoutCovaregeArea()).andExpect(status().isBadRequest()).andReturn();
         ErrorModel errorModel = getErrorModel(result);
