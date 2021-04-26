@@ -14,7 +14,7 @@ Microserviço criado para controlar os dados de parceiros, contendo as seguintes
 Para executarmos o projeto local precisamos do [Docker](https://www.docker.com/), o Docker foi escolhido pois nos garante que o projeto seja multi-plataforma, basta apenas termos o Docker instalado.<br>
 Na pasta raiz do projeto execute o seguinte comando:
 ```shell script
-docker-compose -f docker-local/docker-compose-local.yml build --no-cache && docker-compose -f docker-local/docker-compose-local.yml up -d
+docker-compose -f docker-local/docker-compose.yml build --no-cache && docker-compose -f docker-local/docker-compose.yml up -d
 ```
 O docker-compose criar o banco local na port 27017, criar um container para de migrations que garanti a criação dos índices, e sobe o serviço na porta 8080.<br>
 Para a execução do projeto é impressindivél que as portas supracitadas não estejam em uso. 
