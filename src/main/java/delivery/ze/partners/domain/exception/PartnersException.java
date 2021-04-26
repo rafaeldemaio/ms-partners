@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class PartnersException extends RuntimeException {
 
-    private String shortMessage;
-    private Integer code;
+    private final String shortMessage;
+    private final Integer code;
     private Map<String, String> attributes;
 
     public PartnersException(final String message, final String shortMessage, final Integer code) {
@@ -16,7 +16,7 @@ public class PartnersException extends RuntimeException {
         this.code = code;
     }
 
-    public PartnersException(final String message, final String shortMessage, final Integer code, final Map attributes) {
+    public PartnersException(final String message, final String shortMessage, final Integer code, final Map<String, String> attributes) {
         super(message);
         this.attributes = attributes;
         this.shortMessage = shortMessage;

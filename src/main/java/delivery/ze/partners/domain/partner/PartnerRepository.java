@@ -34,7 +34,7 @@ class PartnerRepositoryImpl implements PartnerRepositoryCustom {
     @Override
     public Page<Partner> searchFromCoverageArea(final Point point, final Pageable pageable) {
 
-        final org.springframework.data.mongodb.core.query.Query query = buildQuery(point).with(pageable);
+        final var query = buildQuery(point).with(pageable);
         List<Partner> partners = mongoTemplate.find(query, Partner.class);
         return PageableExecutionUtils.getPage(partners, pageable,
             () -> mongoTemplate.count(query.limit(-1).skip(-1), Partner.class));
@@ -43,7 +43,7 @@ class PartnerRepositoryImpl implements PartnerRepositoryCustom {
     @Override
     public Optional<Partner> searchFromCoverageArea(final Point point) {
 
-        final org.springframework.data.mongodb.core.query.Query query = buildQuery(point);
+        final var query = buildQuery(point);
         Partner partner = mongoTemplate.findOne(query, Partner.class);
         return Optional.ofNullable(partner);
     }
@@ -51,7 +51,7 @@ class PartnerRepositoryImpl implements PartnerRepositoryCustom {
     private org.springframework.data.mongodb.core.query.Query buildQuery(final Point point) {
 
         return new org.springframework.data.mongodb.core.query.Query(
-            new Criteria().where("coverageArea").intersects(new GeoJsonPoint(point))
+            Criteria.where("coverageArea").intersects(new GeoJsonPoint(point))
             .and("address").nearSphere(point).maxDistance(0.503712240453784));
     }
 

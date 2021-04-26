@@ -7,8 +7,6 @@ import delivery.ze.partners.infra.converter.PartnersConverter;
 import delivery.ze.partners.infra.validation.PartnersValidator;
 import delivery.ze.partners.restapi.data.PartnersRequest;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.geo.Point;
 import org.springframework.stereotype.Component;
 

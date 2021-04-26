@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -51,7 +52,7 @@ public class PartnersConverterImpl implements PartnersConverter {
     }
 
     private Point addressFromORM(final org.springframework.data.geo.Point point) {
-        return new Point("Point", List.of(point.getX(), point.getY()));
+        return new Point("Point", Arrays.asList(point.getX(), point.getY()));
     }
 
     private MultiPolygon coverageAreaFromORM(final GeoJsonMultiPolygon geoJsonMultiPolygon) {
@@ -63,7 +64,7 @@ public class PartnersConverterImpl implements PartnersConverter {
             for (final GeoJsonLineString line : polygon.getCoordinates()) {
                 List<List> points = new ArrayList<>();
                 for (final org.springframework.data.geo.Point point : line.getCoordinates()) {
-                    points.add(List.of(point.getX(), point.getY()));
+                    points.add(Arrays.asList(point.getX(), point.getY()));
                 }
                 polygons.add(points);
             }

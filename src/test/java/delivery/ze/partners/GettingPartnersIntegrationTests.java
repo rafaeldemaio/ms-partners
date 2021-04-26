@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class GettingPartnersIntegrationTests extends AbstractIntegrationTests {
+class GettingPartnersIntegrationTests extends AbstractIntegrationTests {
 
     @Autowired
     private PartnerRepository repository;
@@ -36,7 +36,7 @@ public class GettingPartnersIntegrationTests extends AbstractIntegrationTests {
     }
 
     @Test
-    public void given_a_registered_id_should_return_the_partner() throws Exception {
+    void given_a_registered_id_should_return_the_partner() throws Exception {
 
         MvcResult result = performGet(get("/partners/1"))
             .andExpect(status().isOk())
@@ -45,7 +45,7 @@ public class GettingPartnersIntegrationTests extends AbstractIntegrationTests {
     }
 
     @Test
-    public void given_unregistered_id_should_return_not_found() throws Exception {
+    void given_unregistered_id_should_return_not_found() throws Exception {
         MvcResult result = performGet(get("/partners/329ds23"))
             .andExpect(status().isNotFound())
             .andReturn();
@@ -54,7 +54,7 @@ public class GettingPartnersIntegrationTests extends AbstractIntegrationTests {
     }
 
     @Test
-    public void given_near_point_should_find_shortest_partner() throws Exception {
+    void given_near_point_should_find_shortest_partner() throws Exception {
         Partner partner = getPartnerFromJson();
         repository.save(partner);
         MvcResult result = performGet(get("/partners")
@@ -68,7 +68,7 @@ public class GettingPartnersIntegrationTests extends AbstractIntegrationTests {
     }
 
     @Test
-    public void given_faraway_point_should_return_not_found() throws Exception {
+    void given_faraway_point_should_return_not_found() throws Exception {
         MvcResult result = performGet(get("/partners")
             .param("lng", "30.36556")
             .param("lat", "21.00001"))

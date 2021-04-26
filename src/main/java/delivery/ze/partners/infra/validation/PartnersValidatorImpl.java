@@ -23,7 +23,7 @@ public class PartnersValidatorImpl implements PartnersValidator {
             attributes.put("document", "already registered"));
 
         GeoJsonMultiPolygon coverageArea = request.getCoverageArea();
-        if (coverageArea.getCoordinates() == null || coverageArea.getCoordinates().isEmpty()) {
+        if (coverageArea.getCoordinates().isEmpty()) {
             attributes.put("coverageArea", "coordinates is invalid");
         }
 

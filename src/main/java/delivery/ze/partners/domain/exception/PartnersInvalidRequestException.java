@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class PartnersInvalidRequestException extends PartnersException {
 
-    public PartnersInvalidRequestException(final Map attributes) {
+    public PartnersInvalidRequestException(final Map<String, String> attributes) {
         super("Validation failed for PartnersRequest", "Validation failed", HttpStatus.BAD_REQUEST.value(), attributes);
     }
 
