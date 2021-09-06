@@ -1,4 +1,4 @@
-# ze-challenge-partners
+# ms-partners
 
 ---
 ### Propósito:
